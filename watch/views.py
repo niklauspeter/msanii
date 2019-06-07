@@ -224,3 +224,26 @@ def search_results(request):
     else:
         message="You haven't searched for any term"
         return render(request,'search.html',{"message":message})
+
+
+@login_required(login_url='/accounts/login/')
+def view_business(request,id):
+    current_user = request.user
+
+    try:
+        comments = Comment.objects.filter(business_id=id)
+    except:
+        comments =[]
+
+    business = Business.objects.get(id=id)
+    if request.method =='POST':
+        form = CommentForm(request.POST,request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.username = current_user
+            comment.business = business
+            comment.save()
+    else:
+        form = CommentForm()
+
+    return render(request,'view_business.html',{"business":business,"form":form,"comments":comments})

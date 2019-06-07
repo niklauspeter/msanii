@@ -63,6 +63,7 @@ class Business(models.Model):
     email = models.EmailField()
     address =models.CharField(max_length=100)
     contact = models.IntegerField()
+   
 
     def __str__(self):
         return self.name
@@ -122,4 +123,7 @@ class BlogPost(models.Model):
 class Comment(models.Model):
     comment = models.CharField(max_length=300)
     username = models.ForeignKey(User,on_delete=models.CASCADE)
-    post = models.ForeignKey(BlogPost,on_delete=models.CASCADE)
+    
+    business = models.ForeignKey(Business,on_delete=models.CASCADE, null=True)
+    
+    

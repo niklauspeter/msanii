@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row top">
+    <div class="col-md-12"></div>
+  </div>
+  <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+    
+            </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+  <div class="card" style="width: 50rem;">
+    <h5 class="card-title">{{business.name}}</h5>
+    <a href="/user/{{business.owner}}">
+      <h6>{{business.owner}}</h6>
+    </a>
+    <img class="card-img-top" src="{{business.logo.url}}" >
+
+    <div class="card-body">
+
+    <!-- <p class="card-text">{{blog.post | safe}}</p> -->
+  </div>
+  <div class="card-footer">
+    {% if comments%}
+    <h4 class="text-center">Bids</h4>
+      {% for comment in comments %}
+      <p>
+        <strong>{{comment.username}}</strong> {{comment.comment}}
+      </p>
+      {% endfor %}
+
+    {%else %}
+    <h3 class="text-center">Make a Bid</h3>
+    <hr>
+    {% endif %}
+
+    <form  action="/view/business/{{business.id}}" method="post" enctype="multipart/form-data">
+      {%csrf_token%}
+
+      {% bootstrap_form form%}
+      <div class="text-center">
+      <input id="votes-input"type="submit" class="btn btn-success btn-lg" value="Bid">
+    </div>
+    </form>
+  </div>
+</div>
+  </div>
+  </div>
+  
+
+</div>
+
+<style>
+.card-img-top {
+  max-width: 100%;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.top{
+  margin-top: 10px;
+}
+h5{
+  font-size: 30px;
+  text-align: center;
+}
+h6{
+  text-align: center;
+}
+label{
+  display: none;
+}
+</style>
+{% endblock %}
