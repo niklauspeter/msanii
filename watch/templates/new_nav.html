@@ -21,7 +21,7 @@
           width:200px;
           height:100%;
           background-color:rgba(255,255,255,0.9);
-          left:-200px;
+          /* left:-200px; */
           transition:all 500ms linear;
         }
         #sidebar.active{
@@ -67,6 +67,7 @@
                       <li><a class="dropdown-item" href="{% url 'Index'%}">Home</a></li>
                       <li><a class="dropdown-item" href="{% url 'my-profile' %}">Profile</a></li>
                       <li><a class="dropdown-item" href="{%url 'businesses'%}">Upload artpiece </a></li>
+                      <li><a class="dropdown-item" href="/logout">Logout</li>
                       <li>subscriptions</li>
                     </ul>
                   </div>          
@@ -111,14 +112,14 @@
             </div>
             <div class="col-md-1" style="padding-top:10px;">
                 <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}">
-                    <input type="text" class="form-control my-2 my-sm-0 search-input" name="blog" placeholder="Search blog title" id="blog">
+                    <input type="text" class="form-control my-2 my-sm-0 search-input" name="blog" placeholder="Search Art title" id="blog">
                 </form>
                 
             </div>
             <div class="col-md-8" style=" padding-top:5px;text-align:center;font-family: 'Comfortaa', cursive; letter-spacing:2px;">
                 <div class="row">
                     <div class="col-md-10">
-                        <a class="navbar-brand navbar-right" href="{% url 'Index' %}" style="font-size:30px; color:black; "><strong>Msanii.</strong></a>
+                        <a class="navbar-brand navbar-right" href="{% url 'Index' %}" style="font-size:30px; color:black; "><strong>Msanii Art.</strong></a>
                     </div>
                     <div class="col-md-2" style="padding-top:10px;">
                         <div class="row">
@@ -167,7 +168,7 @@
                 </div>
             </div>
             <div class="col-md-2" style="padding-top:20px; padding-bottom: 20px; background-color: #49c5b6; text-align:center">
-                <a href="{%url 'update-profile'%}" style="color:white; font-size:14px; text-decoration: none; "> update profile !
+                <a href="{%url 'businesses'%}" style="color:white; font-size:14px; text-decoration: none; "> upload artpiece !
                 </a>
               </div>
         </div>
